@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorveteria</title>
+    <title>{% block title %}Sorveteria{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
     <!-- Bootstrap 5.3 -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
@@ -27,7 +27,7 @@
                   <div class="bico"><i class="fas fa-utensils"></i></div>
                   <div>
                      <div class="bname">Sor<span>vetto</span></div>
-                     <div class="bsub">Fast Food & Restaurant</div>
+                     <div class="bsub">Sorveteria & Gelados</div>
                   </div>
                </div>
             </a>
@@ -50,12 +50,16 @@
             </div>
          </div>
       </nav>
+      <main>
+        {% block content %}
+        {% endblock %}
+      </main>
       <footer>
          <div class="container">
             <div class="row g-5">
                <div class="col-lg-4">
-                  <div class="fnm">Sar<span>ab</span></div>
-                  <p class="fdesc">We bring the world's finest flavors together in a fast, friendly, and affordable experience. Every meal crafted with love.</p>
+                  <div class="fnm">Sor<span>vetto</span></div>
+                  <p class="fdesc">Reunimos os melhores sabores do mundo em uma experiência rápida, acolhedora e acessível. Cada refeição é preparada com carinho.</p>
                   <div class="fsoc">
                      <a href="#"><i class="fab fa-facebook-f"></i></a>
                      <a href="#"><i class="fab fa-instagram"></i></a>
@@ -65,44 +69,42 @@
                   </div>
                </div>
                <div class="col-sm-6 col-lg-2">
-                  <div class="ftit">Quick Links</div>
+                  <div class="ftit">Links rápidos</div>
                   <ul class="flinks ps-0">
-                     <li><a href="#hero"><i class="fas fa-chevron-right"></i>Home</a></li>
-                     <li><a href="#about"><i class="fas fa-chevron-right"></i>About Us</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Our Menu</a></li>
-                     <li><a href="#reservation"><i class="fas fa-chevron-right"></i>Reservation</a></li>
-                     <li><a href="#blog"><i class="fas fa-chevron-right"></i>Blog</a></li>
-                     <li><a href="#contact-section"><i class="fas fa-chevron-right"></i>Contact</a></li>
+                     <li><a href="#hero"><i class="fas fa-chevron-right"></i>Inicio</a></li>
+                     <li><a href="#about"><i class="fas fa-chevron-right"></i>Sobre nós</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Nosso Menu</a></li>
+                     <li><a href="#contact-section"><i class="fas fa-chevron-right"></i>Contatos</a></li>
                   </ul>
                </div>
                <div class="col-sm-6 col-lg-2">
-                  <div class="ftit">Our Menu</div>
+                  <div class="ftit">Nosso Menu</div>
                   <ul class="flinks ps-0">
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Burgers</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Pizza</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Fried Chicken</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Wraps &amp; Rolls</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Pasta</a></li>
-                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Desserts</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Picolés</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Milkshake</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sorvetes</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sundaes</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sobremesas</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Extras</a></li>
                   </ul>
                </div>
                <div class="col-lg-4">
-                  <div class="ftit">Get In Touch</div>
+                  <div class="ftit">Entre em contato</div>
                   <div class="fci">
                      <div class="fciico"><i class="fas fa-map-marker-alt"></i></div>
-                     <div class="fciinfo"><strong>Address</strong>42 Flavor Street, Manhattan, NY 10001</div>
+                     <div class="fciinfo"><strong>Endereço</strong>42 Flavor Street, Manhattan, NY 10001</div>
                   </div>
                   <div class="fci">
                      <div class="fciico"><i class="fas fa-phone-alt"></i></div>
-                     <div class="fciinfo"><strong>Phone</strong>+1 (800) 123-4567</div>
+                     <div class="fciinfo"><strong>Telefone</strong>+1 (800) 123-4567</div>
                   </div>
                   <div class="fci">
                      <div class="fciico"><i class="fas fa-envelope"></i></div>
-                     <div class="fciinfo"><strong>Email</strong>hello@sarabfood.com</div>
+                     <div class="fciinfo"><strong>Email</strong>hello@sorvettofood.com</div>
                   </div>
                   <div class="fci">
                      <div class="fciico"><i class="fas fa-clock"></i></div>
-                     <div class="fciinfo"><strong>Hours</strong>Wed - Sun: 09 AM - 11 PM</div>
+                     <div class="fciinfo"><strong>Horário</strong>Wed - Sun: 09 AM - 11 PM</div>
                   </div>
                </div>
             </div>
@@ -110,11 +112,25 @@
          <div class="fbot">
             <div class="container">
                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                  <p>&copy 2026 <span>Sarab Restaurant</span>. All Rights Reserved by <a target="_blank" class="mx-0 fw-bold text-success" href="https://bestwpware.com/">Bestwpware</a>. Made with <span><i class="fas fa-heart"></i></span>  <br>Distributed by <a target="_blank" class="mx-0 fw-bold text-success" href="https://themewagon.com">ThemeWagon</a></p>
-                  <div><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+                  <p>&copy 2026 <span>Sorvetto Gelataria</span>. All Rights Reserved by <a target="_blank" class="mx-0 fw-bold text-success" href="https://bestwpware.com/">Bestwpware</a>. Made with <span><i class="fas fa-heart"></i></span>  <br>Distributed by <a target="_blank" class="mx-0 fw-bold text-success" href="https://themewagon.com">ThemeWagon</a></p>
+                  <div><a href="#">Política de Privacidade</a><a href="#">Termos</a><a href="#">Cookies</a></div>
                </div>
             </div>
          </div>
       </footer>
+      <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+    
+	<!-- jQuery -->
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+      <!-- Bootstrap 5 -->
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <!-- AOS -->
+      <script src="{% static 'js/aos.js' %}"></script>
+      <!-- Swiper -->
+      <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+      <!-- CounterUp -->
+      <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+      <!-- Main js -->
+      <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

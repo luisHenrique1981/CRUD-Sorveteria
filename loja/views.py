@@ -11,3 +11,6 @@ def login(request):
 
 def cadastro(request):
     return render(request, 'loja/cadastro.html')
+
+def sobre(request):
+    return render(request, 'loja/sobre.html')

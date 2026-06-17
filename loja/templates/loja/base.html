@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}"/>
     <!-- Style CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    {% block extra_css %}
+    {% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
@@ -36,8 +39,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="nav-link active" href="#hero">Inicio</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#about">Sobre nós</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre nós</a></li>
                   <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
                   <li class="nav-item"><a class="nav-link" href="#testimonials">Avaliações</a></li>
                   <li class="nav-item"><a class="nav-link" href="#contact-section">Contatos</a></li>

@@ -89,7 +89,11 @@ img {
 
 /* ===================== NAVBAR ===================== */
 #nav {
+<<<<<<< HEAD
   background: oklch(64.5% 0.246 16.439);
+=======
+  background: #fff;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
   position: sticky;
   top: 0;
   z-index: 990;
@@ -120,21 +124,36 @@ img {
   font-family: "Playfair Display", serif;
   font-size: 1.5rem;
   font-weight: 900;
+<<<<<<< HEAD
   color: #fff;
 }
 .bname span {
   color: #fff;
+=======
+  color: var(--dark);
+}
+.bname span {
+  color: var(--primary);
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
 }
 .bsub {
   font-size: 0.62rem;
   text-transform: uppercase;
   letter-spacing: 2px;
+<<<<<<< HEAD
   color: #fff;
+=======
+  color: #aaa;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
 }
 .navbar-nav .nav-link {
   font-size: 0.87rem;
   font-weight: 500;
+<<<<<<< HEAD
   color: #fff !important;
+=======
+  color: #333 !important;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
   padding: 26px 13px !important;
   position: relative;
 }
@@ -146,7 +165,11 @@ img {
   transform: translateX(-50%);
   width: 0;
   height: 3px;
+<<<<<<< HEAD
   background: oklch(90.5% 0.182 98.111);
+=======
+  background: var(--primary);
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
   border-radius: 3px 3px 0 0;
   transition: 0.3s;
 }
@@ -155,14 +178,22 @@ img {
   width: 55%;
 }
 .navbar-nav .nav-link:hover {
+<<<<<<< HEAD
   color: oklch(90.5% 0.182 98.111) !important;
+=======
+  color: var(--primary) !important;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
 }
 /* FIX 1 â€” Search btn in navbar */
 #navSearchBtn {
   background: none;
   border: none;
   cursor: pointer;
+<<<<<<< HEAD
   color: #fff;
+=======
+  color: #555;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
   font-size: 1rem;
   padding: 8px 10px;
   border-radius: 8px;
@@ -170,7 +201,11 @@ img {
 }
 #navSearchBtn:hover {
   background: rgba(232, 40, 26, 0.08);
+<<<<<<< HEAD
   color: oklch(90.5% 0.182 98.111);
+=======
+  color: var(--primary);
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
 }
 .nav-cta {
   background: linear-gradient(135deg, var(--primary), #c01e12);
@@ -221,7 +256,11 @@ section {
   margin-left: 0;
 }
 .sdesc {
+<<<<<<< HEAD
   color: #fff;
+=======
+  color: #777;
+>>>>>>> ed281aa0ea4d6ae3766202da8af3391f48659dce
   font-size: 0.93rem;
   line-height: 1.8;
 }

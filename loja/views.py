@@ -5,3 +5,9 @@ def home(request):
 
 def base(request):
     return render(request, 'loja/base.html')
+
+def login(request):
+    return render(request, 'loja/login.html')
+
+def cadastro(request):
+    return render(request, 'loja/cadastro.html')

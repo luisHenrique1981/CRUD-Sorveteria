@@ -1,0 +1,80 @@
+{% extends "loja/base.html" %}
+{% load static %}
+
+{% block title %}
+Carrinho
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <span class="slbl">Seu pedido</span>
+        <h2 class="stitle">Meu <span>Carrinho</span></h2>
+        <div class="sline"></div>
+    </div>
+
+    {% if itens %}
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in itens %}
+                    <tr>
+                        <td>
+                            {% if item.imagem %}
+                                <img 
+                                    src="{% static item.imagem %}" 
+                                    alt="{{ item.nome }}" 
+                                    style="width: 70px; height: 70px; object-fit: cover; border-radius: 10px;"
+                                >
+                            {% endif %}
+
+                            <span class="ms-2">{{ item.nome }}</span>
+                        </td>
+                        <td>{{ item.categoria }}</td>
+                        <td>R$ {{ item.preco }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>R$ {{ item.subtotal }}</td>
+                        <td>
+                            <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-danger btn-sm">
+                                Remover
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end mt-4">
+            <h4>Total: R$ {{ total }}</h4>
+            <a href="#" class="btn-red mt-3">
+                Finalizar Pedido
+            </a>
+        </div>
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Seu carrinho ainda está vazio.
+        </div>
+
+        <div class="text-center">
+            <a href="{% url 'home' %}#menu" class="btn-red">
+                Ver produtos
+            </a>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock %}

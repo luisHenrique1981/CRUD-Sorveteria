@@ -224,7 +224,19 @@
                         <div class="mprice">$14.99 <small>$18.99</small></div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(128)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Sorvete Morango">
+                        <input type="hidden" name="categoria" value="Sorvetes">
+                        <input type="hidden" name="preco" value="14.99">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/sorvete.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -254,7 +266,19 @@
                         <div class="mprice">$19.99 <small>$24.99</small></div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(95)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Picole com Amendoim">
+                        <input type="hidden" name="categoria" value="Picoles">
+                        <input type="hidden" name="preco" value="12.99">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/picole.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -284,7 +308,19 @@
                         <div class="mprice">$12.99 <small>$16.99</small></div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(210)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Milkshake Chocolate">
+                        <input type="hidden" name="categoria" value="Milkshake">
+                        <input type="hidden" name="preco" value="10.50">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/milkshake.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -313,7 +349,19 @@
                         <div class="mprice">$10.99</div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(74)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Sundae Chocolate">
+                        <input type="hidden" name="categoria" value="Sundae">
+                        <input type="hidden" name="preco" value="8.50">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/sundae.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -343,7 +391,19 @@
                         <div class="mprice">$8.99 <small>$11.99</small></div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(56)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Banana Split">
+                        <input type="hidden" name="categoria" value="Sobremesas">
+                        <input type="hidden" name="preco" value="12.50">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/sobremesa.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -373,7 +433,19 @@
                         <div class="mprice">$16.99</div>
                         <div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">(88)</span></div>
                      </div>
-                     <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                     <form action="{% url 'adicionar_carrinho' %}" method="POST">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="nome" value="Frutas">
+                        <input type="hidden" name="categoria" value="Extras">
+                        <input type="hidden" name="preco" value="2.50">
+                        <input type="hidden" name="quantidade" value="1">
+                        <input type="hidden" name="imagem" value="img/menu/extras.jpg">
+
+                        <button type="submit" class="madd" title="Adicionar ao carrinho">
+                           <i class="fas fa-cart-plus"></i>
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -388,28 +460,7 @@
 <!-- ============================================================
    FIX 4 � MENU DETAIL POPUP MODAL
    ============================================================ -->
-<div id="menuPop">
-   <div class="mpbox">
-      <button class="mpclose" id="mpClose"><i class="fas fa-times"></i></button>
-      <div class="mpimg"><img id="mpImg" src="" alt=""/></div>
-      <div class="mpbody">
-         <div id="mpCat"></div>
-         <div id="mpTitle"></div>
-         <div id="mpStars"></div>
-         <div id="mpDesc"></div>
-         <div id="mpPrice"></div>
-         <div class="mpmeta" id="mpMeta"></div>
-         <div class="mpqty">
-            <button class="mpqbtn" id="mpMinus">-</button>
-            <span class="mpqnum" id="mpQnum">1</span>
-            <button class="mpqbtn" id="mpPlus">+</button>
-            <span style="font-size:.82rem;color:#aaa;margin-left:9px;">Quantidade</span>
-         </div>
-         <div class="mptags" id="mpTags"></div>
-         <button class="mpaddcart" id="mpAddCart"><i class="fas fa-shopping-cart"></i>Adicionar ao carrinho</button>
-      </div>
-   </div>
-</div>
+
 <!-- SPECIAL OFFER -->
 <section id="special">
    <div class="spbg"></div>

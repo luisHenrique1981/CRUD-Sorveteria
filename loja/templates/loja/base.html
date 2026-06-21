@@ -48,7 +48,9 @@
                <div class="d-flex align-items-center gap-1">
                   <!-- FIX 1: Search button -->
                   <button id="navSearchBtn" title="Search"><i class="fas fa-search"></i></button>
-                  <a href="#menu" class="nav-link nav-cta"><i class="fas fa-shopping-bag me-1"></i>Peça Agora</a>
+                  <a href="{% url 'carrinho' %}" class="nav-link nav-cta">
+                     <i class="fas fa-shopping-cart me-1"></i>Carrinho
+                  </a>
                </div>
             </div>
          </div>

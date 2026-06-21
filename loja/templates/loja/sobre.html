@@ -6,126 +6,131 @@ Sobre Nos
 {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/carrousel.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div id="myCarousel" class="carousel-slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-        <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
-        <div class="container">
-            <div class="carousel-caption text-left">
-            <h1>Example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-            </div>
-        </div>
-        </div>
-        <div class="carousel-item">
-        <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-        <div class="container">
-            <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-        </div>
-        </div>
-        <div class="carousel-item">
-        <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-        <div class="container">
-            <div class="carousel-caption text-right">
-            <h1>One more for good measure.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-        </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    </div>
-
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-    <h1 class="titulo-equipe">Nossa Equipe</h1>
-    <div class="equipe">
-        <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Lais Alves</h2>
-            <p>Programadora</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <!-- Three columns of text below the carousel -->
+        <h1 class="titulo-equipe">Nossa <span>Equipe</span></h1>
+        <div class="sline"></div>
+        <div class="equipe">
+            <div class="col-lg-2">
+                <img class="rounded-circle" src="{% static 'img/sobre/lais.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
+                <h2>Lais Alves</h2>
+                <p>Programadora</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Saiba mais &raquo;</a></p>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-2">
+                <img class="rounded-circle" src="{% static 'img/sobre/luis.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
+                <h2>Luis Henrique</h2>
+                <p>Programador</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Saiba mais &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-            <img class="rounded-circle" src="{% static 'img/sobre/luis.jpeg' %}" alt="Generic placeholder image" width="140" height="140">
-            <h2>Luis Henrique</h2>
-            <p>Programador</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Tayna Vitoria</h2>
-            <p>Programadora</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+            <div class="col-lg-2">
+                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                <h2>Tayna Vitoria</h2>
+                <p>Programadora</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Saiba mais &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
 
-    <!-- START THE FEATURETTES -->
+        <!-- START THE FEATURETTES -->
 
-    <hr class="featurette-divider">
+        <hr class="featurette-divider">
 
-    <div class="row-featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Uma sorveteria feita para  <span class="texto-mudado">adoçar momentos</span></h2>
-            <p class="lead">Nossa sorveteria nasceu com o objetivo de oferecer sabores especiais, atendimento acolhedor e produtos de qualidade para todos os nossos clientes. Aqui, cada sorvete e picolé é preparado pensando em proporcionar uma experiência gostosa, refrescante e cheia de carinho.</p>
+        <div class="row-featurette" data-aos="fade-right" data-aos-duration="1000">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Uma sorveteria feita para  <span class="texto-mudado">adoçar momentos</span></h2>
+                <p class="lead">Nossa sorveteria nasceu com o objetivo de oferecer sabores especiais, atendimento acolhedor e produtos de qualidade para todos os nossos clientes. Aqui, cada sorvete e picolé é preparado pensando em proporcionar uma experiência gostosa, refrescante e cheia de carinho.</p>
+            </div>
+            <div class="col-md-5 d-flex justify-content-end align-items-end">
+                <img class="featurette-image img-fluid minha-imagem-custom" src="{% static 'img/sobre/sorveteria.jpg' %}" alt="Generic placeholder image">
+            </div>
         </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="{% static 'img/sobre/sorveteria.jpg' %}" alt="Generic placeholder image">
+
+        <div class="row-featurette" data-aos="fade-left" data-aos-duration="1000">
+            <div class="col-md-7 order-md-2 ">
+                <h2 class="featurette-heading text-end">O que  <span class="texto-mudado"> oferecemos</span></h2>
+                <p class="lead text-end">Trabalhamos com diversos sabores de sorvetes e picolés, desde os tradicionais, como chocolate, morango e creme, até opções mais refrescantes e especiais. Nosso compromisso é oferecer variedade, sabor e qualidade em cada produto.</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="featurette-image img-fluid mx-auto minha-imagem-custom"  src="{% static 'img/sobre/sabores.jpg' %}" alt="Generic placeholder image">
+            </div>
         </div>
-    </div>
 
-    <hr class="featurette-divider">
 
-    <div class="row-featurette">
-        <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">O que  <span class="texto-mudado">oferecemos</span></h2>
-            <p class="lead">Trabalhamos com diversos sabores de sorvetes e picolés, desde os tradicionais, como chocolate, morango e creme, até opções mais refrescantes e especiais. Nosso compromisso é oferecer variedade, sabor e qualidade em cada produto.</p>
+        <div class="row-featurette" data-aos="fade-right" data-aos-duration="1000">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Nosso  <span class="texto-mudado">compromisso</span></h2>
+                <p class="lead">Prezamos por um atendimento atencioso, um ambiente agradável e produtos preparados com cuidado. Buscamos sempre melhorar para que cada cliente tenha uma experiência positiva ao visitar nossa sorveteria.</p>
+            </div>
+            <div class="col-md-5 d-flex justify-content-end align-items-end">
+                <img class="featurette-image img-fluid minha-imagem-custom" src="{% static 'img/sobre/oferecemos.jpg' %}" alt="Generic placeholder image">
+            </div>
         </div>
-        <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="{% static 'img/sobre/sabores.jpg' %}" alt="Generic placeholder image">
+
+        <hr class="featurette-divider">
+
+
+        <h1 class="titulo-valores" data-aos="fade-left" data-aos-duration="1000">Nossos <span>Valores</span></h1>
+        <div class="sline"></div>
+        <div class="container mt-5 cards-sobre" data-aos="fade-left" data-aos-duration="1000">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                
+                <div class="col">
+                    <div class="card h-100 shadow-sm card-1">
+                        <div class="card-body py-5">
+                            <h2 class="card-title">Qualidade</h2>
+                            <p class="card-text">Usar sempre ingredientes selecionados e de confiança.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm card-2">
+                        <div class="card-body py-5 ">
+                            <h2 class="card-title">Criatividade</h2>
+                            <p class="card-text">Trazer combinações únicas e surpreendentes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm card-3">
+                        <div class="card-body py-5">
+                            <h2 class="card-title">Inovação</h2>
+                            <p class="card-text">Buscar constantemente novos sabores e experiências.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm card-4">
+                        <div class="card-body py-5">
+                            <h2 class="card-title">Sustentabilidade</h2>
+                            <p class="card-text">Atuar de forma responsável, reduzindo impactos ao meio ambiente.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row-featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Nosso  <span class="texto-mudado">compromisso</span></h2>
-            <p class="lead">Prezamos por um atendimento atencioso, um ambiente agradável e produtos preparados com cuidado. Buscamos sempre melhorar para que cada cliente tenha uma experiência positiva ao visitar nossa sorveteria.</p>
-        </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="{% static 'img/sobre/oferecemos.jpg' %}" alt="Generic placeholder image">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
+    </div>    
 </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init(); // Inicializa o efeito
+</script>
 {% endblock %}

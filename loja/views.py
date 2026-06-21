@@ -14,3 +14,6 @@ def cadastro(request):
 
 def sobre(request):
     return render(request, 'loja/sobre.html')
+
+def contatos(request):
+    return render(request, 'loja/contatos.html')

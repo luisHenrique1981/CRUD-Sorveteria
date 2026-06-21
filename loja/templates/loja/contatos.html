@@ -1,11 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contatos</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "loja/base.html" %}
+{% load static %}
+
+{% block title %}
+Contatos
+{% endblock %}
+
+
+{% block content %}
+<section id="contact-section">
+   <div class="container">
+      <div class="text-center" data-aos="fade-up">
+         <span class="slbl">Entre em Contato</span>
+         <h2 class="stitle">Contate <span>Nos</span></h2>
+         <div class="sline"></div>
+         <p class="sdesc mx-auto" style="max-width:480px;">Tem alguma pergunta, comentário ou deseja planejar um evento especial? Adoraríamos ouvir você.</p>
+      </div>
+      <div class="lead text-center mb-5">
+        <p>Ficou com alguma dúvida, quer fazer uma sugestão ou quer apenas compartilhar como foi a sua experiência? Nós adoraríamos ouvir você! Preencha o formulário ao lado ou entre em contato diretamente pelos nossos canais oficiais. Nossa equipe está sempre pronta para te atender com toda a atenção e carinho que você merece. Vamos conversar!</p>
+      </div>
+      <div class="row g-4 mt-5">
+         <div class="col-lg-4" data-aos="fade-right">
+            <div class="ctdark">
+               <h4>Vamos Conversar</h4>
+               <p class="ctsub">Normalmente respondemos em até 2 horas durante o horário comercial.</p>
+               <div class="ctitem">
+                  <div class="cticon"><i class="fas fa-map-marker-alt"></i></div>
+                  <div class="ctinfo"><strong>Endereço</strong><span>42 Flavor Street, Manhattan,<br/>New York, NY 10001</span></div>
+               </div>
+               <div class="ctitem">
+                  <div class="cticon"><i class="fas fa-phone-alt"></i></div>
+                  <div class="ctinfo"><strong>Telefone</strong><span>+1 (800) 123-4567</span></div>
+               </div>
+               <div class="ctitem">
+                  <div class="cticon"><i class="fas fa-envelope"></i></div>
+                  <div class="ctinfo"><strong>Email</strong><span>hello@sarabfood.com</span></div>
+               </div>
+               <div class="ctitem">
+                  <div class="cticon"><i class="fas fa-clock"></i></div>
+                  <div class="ctinfo"><strong>Horários Funcionamento</strong><span>Qua - Sab: 9 AM - 11 PM</span></div>
+               </div>
+               <div class="ctsocrow">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-youtube"></i></a>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-8" data-aos="fade-left">
+            <div class="fcard">
+               <div class="row g-3">
+                  <div class="col-sm-6"><label class="flbl">Seu nome *</label><input type="text" class="fctrl" placeholder="John Doe"/></div>
+                  <div class="col-sm-6"><label class="flbl">Email *</label><input type="email" class="fctrl" placeholder="you@email.com"/></div>
+                  <div class="col-sm-6"><label class="flbl">Numero Telefone</label><input type="tel" class="fctrl" placeholder="+1 (800) 000-0000"/></div>
+                  <div class="col-sm-6">
+                     <label class="flbl">Conteúdo *</label>
+                     <select class="fctrl">
+                        <option>Consulta Geral</option>
+                        <option>Catering &amp; Events</option>
+                        <option>Feedback</option>
+                        <option>Partnership</option>
+                        <option>Media &amp; Press</option>
+                     </select>
+                  </div>
+                  <div class="col-12"><label class="flbl">Mensagem *</label><textarea class="fctrl" rows="5" placeholder="Escreva sua mensagem aqui..."></textarea></div>
+                  <div class="col-12"><button class="btn-red" id="ctcBtn"><i class="fas fa-paper-plane"></i>Enviar Mensagem</button></div>
+               </div>
+               <div class="sucmsg" id="ctcOk">
+                  <i class="fas fa-check-circle"></i>
+                  <p>Mensagem Enviada! Responderemos em até 2 horas.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

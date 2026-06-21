@@ -4,49 +4,6 @@
          FIX 1 � SEARCH OVERLAY POPUP
          ============================================================ -->
 {% block content %}
-<div id="searchOv">
-   <button class="sovclose" id="searchClose"><i class="fas fa-times"></i></button>
-   <div class="sovbox">
-      <h4>O que procura hoje?</h4>
-      <div class="sovinput">
-         <input type="text" id="searchInput" placeholder="Pesquise por sorvetes, picolés..." autocomplete="off"/>
-         <button><i class="fas fa-search"></i></button>
-      </div>
-      <!-- Categories inside search box -->
-      <div class="sovcats">
-         <div class="sovcat active" data-cat="all">
-            <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Todos Items
-         </div>
-         <div class="sovcat" data-cat="burgers">
-            <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Sorvetes
-         </div>
-         <div class="sovcat" data-cat="pizza">
-            <img src="{% static 'img/menu/picole.jpg' %}" alt=""/>Picolés
-         </div>
-         <div class="sovcat" data-cat="chicken">
-            <img src="{% static 'img/menu/sundae.jpg' %}" alt=""/>Sundaes
-         </div>
-         <div class="sovcat" data-cat="wraps">
-            <img src="{% static 'img/menu/milkshake.jpg' %}" alt=""/>Milkshakes
-         </div>
-         <div class="sovcat" data-cat="pasta">
-            <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Sobremesas
-         </div>
-         <div class="sovcat" data-cat="desserts">
-            <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Extras
-         </div>
-      </div>
-      <div class="sovtrend">
-         <p><i class="fas fa-fire me-1" style="color:var(--secondary);"></i>Buscas Populares</p>
-         <span class="ttag">Milkshake Moranog</span>
-         <span class="ttag">Sundae Limão</span>
-         <span class="ttag">Picole Chocolate</span>
-         <span class="ttag">Sorvete Napolitano</span>
-         <span class="ttag">Sorvete Morango</span>
-         <span class="ttag">Banana Split</span>
-      </div>
-   </div>
-</div>
 <!-- ============================================================
    HERO
    ============================================================ -->

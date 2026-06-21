@@ -25,7 +25,7 @@
 <body>
     <nav class="navbar navbar-expand-lg" id="nav">
          <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home' %}">
                <div class="blogo">
                   <div class="bico"><i class="fas fa-utensils"></i></div>
                   <div>
@@ -39,11 +39,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Inicio</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre nós</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#testimonials">Avaliações</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#contact-section">Contatos</a></li>
+                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}" href="{% url 'sobre' %}">Sobre nós</a></li>
+                  <li class="nav-item"><a class="nav-link" href="">Menu</a></li>
+                  <li class="nav-item"><a class="nav-link" href="">Avaliações</a></li>
+                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contatos' %}active{% endif %}" href="{% url 'contatos' %}">Contatos</a></li>
                </ul>
                <div class="d-flex align-items-center gap-1">
                   <!-- FIX 1: Search button -->
@@ -54,6 +54,49 @@
          </div>
       </nav>
       <main>
+         <div id="searchOv">
+            <button class="sovclose" id="searchClose"><i class="fas fa-times"></i></button>
+            <div class="sovbox">
+               <h4>O que procura hoje?</h4>
+               <div class="sovinput">
+                  <input type="text" id="searchInput" placeholder="Pesquise por sorvetes, picolés..." autocomplete="off"/>
+                  <button><i class="fas fa-search"></i></button>
+               </div>
+               <!-- Categories inside search box -->
+               <div class="sovcats">
+                  <div class="sovcat active" data-cat="all">
+                     <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Todos Items
+                  </div>
+                  <div class="sovcat" data-cat="burgers">
+                     <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Sorvetes
+                  </div>
+                  <div class="sovcat" data-cat="pizza">
+                     <img src="{% static 'img/menu/picole.jpg' %}" alt=""/>Picolés
+                  </div>
+                  <div class="sovcat" data-cat="chicken">
+                     <img src="{% static 'img/menu/sundae.jpg' %}" alt=""/>Sundaes
+                  </div>
+                  <div class="sovcat" data-cat="wraps">
+                     <img src="{% static 'img/menu/milkshake.jpg' %}" alt=""/>Milkshakes
+                  </div>
+                  <div class="sovcat" data-cat="pasta">
+                     <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Sobremesas
+                  </div>
+                  <div class="sovcat" data-cat="desserts">
+                     <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Extras
+                  </div>
+               </div>
+               <div class="sovtrend">
+                  <p><i class="fas fa-fire me-1" style="color:var(--secondary);"></i>Buscas Populares</p>
+                  <span class="ttag">Milkshake Moranog</span>
+                  <span class="ttag">Sundae Limão</span>
+                  <span class="ttag">Picole Chocolate</span>
+                  <span class="ttag">Sorvete Napolitano</span>
+                  <span class="ttag">Sorvete Morango</span>
+                  <span class="ttag">Banana Split</span>
+               </div>
+            </div>
+         </div>
         {% block content %}
         {% endblock %}
       </main>

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+#myCarousel{
+    display: flex;                 /* Ativa o modo Flexbox */
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center;
+}
+
+.titulo-equipe{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 900;
+    line-height: 1.2;
+    gap: 10px;
+}
+
+.titulo-equipe span {
+  color: oklch(64.5% 0.246 16.439);
+}
+
+.sline {
+  width: 58px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  margin: 0 auto 12px;
+}
+
+.equipe {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.col-lg-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn{
+    background: oklch(90.5% 0.182 98.111);
+    border:none;
+}
+
+a.btn.btn-secondary:hover {
+    background: oklch(64.5% 0.246 16.439);
+}
+
+.row-featurette{
+    display: flex;
+    margin-top: 100px;
+}
+
+#img-sobre3{
+    display: flex;
+    justify-content: right;
+    align-items: end;
+    text-align: right;
+    background-color: blue;
+}
+
+.minha-imagem-custom{
+    width: 520px; 
+    height: auto;
+}
+
+.cards-sobre{
+    display: flex;
+    margin-bottom: 160px;
+}
+
+.titulo-valores{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    font-weight: 900;
+    line-height: 1.2;
+    gap: 10px;
+}
+
+.titulo-valores span{
+    color: oklch(64.5% 0.246 16.439);
+}
+
+.card-1{
+    background-color: #FCC61D;
+    border: none;
+    color: white;
+}
+
+.card-2{
+    background-color: #AE75DA;
+    border: none;
+    color: white;
+}
+
+.card-3{
+    background-color: #FFAACA;
+    border: none;
+    color: white;
+}
+
+.card-4{
+    background-color: #78C841;
+    border: none;
+    color: white;
+}

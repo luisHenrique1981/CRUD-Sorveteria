@@ -39,18 +39,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a></li>
-                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}" href="{% url 'sobre' %}">Sobre nós</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Menu</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Avaliações</a></li>
-                  <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contatos' %}active{% endif %}" href="{% url 'contatos' %}">Contatos</a></li>
+                  {% if user.is_authenticated %}
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}" href="{% url 'sobre' %}">Sobre nós</a></li>
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a></li>
+                     <li class="nav-item"><a class="nav-link" href="">Menu</a></li>
+                     <li class="nav-item"><a class="nav-link" href="">Avaliações</a></li>
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contatos' %}active{% endif %}" href="{% url 'contatos' %}">Contatos</a></li>
+                  {% else %}
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a></li>
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'cadastro' %}active{% endif %}" href="{% url 'cadastro' %}">Criar Conta</a></li>
+                  {% endif %}
                </ul>
+               </ul> 
                <div class="d-flex align-items-center gap-1">
-                  <!-- FIX 1: Search button -->
-                  <button id="navSearchBtn" title="Search"><i class="fas fa-search"></i></button>
-                  <a href="{% url 'carrinho' %}" class="nav-link nav-cta">
-                     <i class="fas fa-shopping-cart me-1"></i>Carrinho
-                  </a>
+                  {% if user.is_authenticated %}
+                     <button id="navSearchBtn" title="Search"><i class="fas fa-search"></i></button>
+                     <a href="{% url 'carrinho' %}" class="nav-link nav-cta">
+                        <i class="fas fa-shopping-cart me-1"></i>Carrinho
+                     </a>
+                     <span class="text-white fw-bold ms-2">Olá, {{ user.username }}!</span>
+                     <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-light ms-2">Sair</a>
+                  {% else %}
+                     <a href="{% url 'login' %}" class="nav-link text-white fw-bold">Login</a>
+                     <a href="{% url 'cadastro' %}" class="nav-link text-white fw-bold ms-2">Criar Conta</a>
+                  {% endif %}
+               </div>
                </div>
             </div>
          </div>
@@ -60,10 +73,12 @@
             <button class="sovclose" id="searchClose"><i class="fas fa-times"></i></button>
             <div class="sovbox">
                <h4>O que procura hoje?</h4>
-               <div class="sovinput">
-                  <input type="text" id="searchInput" placeholder="Pesquise por sorvetes, picolés..." autocomplete="off"/>
-                  <button><i class="fas fa-search"></i></button>
-               </div>
+               <form method="GET" action="{% url 'home' %}">
+                  <div class="sovinput">
+                     <input type="text" name="q" id="searchInput" placeholder="Pesquise por sorvetes, picolés..." autocomplete="off"/>
+                     <button type="submit"><i class="fas fa-search"></i></button>
+                  </div>
+                </form>
                <!-- Categories inside search box -->
                <div class="sovcats">
                   <div class="sovcat active" data-cat="all">

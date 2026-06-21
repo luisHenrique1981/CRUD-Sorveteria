@@ -14,6 +14,19 @@ Carrinho
         <div class="sline"></div>
     </div>
 
+    {% if messages %}
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-10">
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show text-center fw-bold shadow-sm" role="alert" style="border-radius: 10px;">
+                        <i class="fas fa-check-circle me-2"></i>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
     {% if itens %}
         <div class="table-responsive">
             <table class="table table-bordered align-middle text-center">
@@ -32,23 +45,24 @@ Carrinho
                     {% for item in itens %}
                     <tr>
                         <td>
-                            {% if item.imagem %}
-                                <img 
-                                    src="{% static item.imagem %}" 
-                                    alt="{{ item.nome }}" 
-                                    style="width: 70px; height: 70px; object-fit: cover; border-radius: 10px;"
-                                >
-                            {% endif %}
-
-                            <span class="ms-2">{{ item.nome }}</span>
+                            <div class="d-flex align-items-center text-start ps-3">
+                                {% if item.imagem %}
+                                    <img 
+                                        src="{% static item.imagem %}" 
+                                        alt="{{ item.nome }}" 
+                                        style="width: 70px; height: 70px; object-fit: cover; border-radius: 10px; flex-shrink: 0;"
+                                    >
+                                {% endif %}
+                                <span class="ms-3 fw-bold">{{ item.nome }}</span>
+                            </div>
                         </td>
                         <td>{{ item.categoria }}</td>
                         <td>R$ {{ item.preco }}</td>
                         <td>{{ item.quantidade }}</td>
-                        <td>R$ {{ item.subtotal }}</td>
+                        <td class="fw-bold text-success">R$ {{ item.subtotal }}</td>
                         <td>
-                            <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-danger btn-sm">
-                                Remover
+                            <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-danger btn-sm rounded-3">
+                                <i class="fas fa-trash-alt me-1"></i> Remover
                             </a>
                         </td>
                     </tr>
@@ -57,20 +71,26 @@ Carrinho
             </table>
         </div>
 
-        <div class="text-end mt-4">
-            <h4>Total: R$ {{ total }}</h4>
-            <a href="#" class="btn-red mt-3">
-                Finalizar Pedido
+        <div class="d-flex flex-wrap justify-content-between align-items-end mt-4">
+            <a href="{% url 'home' %}#mgrid" class="btn btn-outline-secondary rounded-3 px-4 py-2 mb-2">
+                <i class="fas fa-arrow-left me-2"></i> Ver mais produtos
             </a>
+            
+            <div class="text-end mb-2">
+                <h4 class="mb-3">Total: <span class="text-success fw-bold">R$ {{ total }}</span></h4>
+                <a href="{% url 'finalizar_pedido' %}" class="btn-red d-inline-block text-decoration-none px-5">
+                    Finalizar Pedido
+                </a>
+            </div>
         </div>
 
     {% else %}
-        <div class="alert alert-warning text-center">
+        <div class="alert alert-warning text-center shadow-sm" style="border-radius: 10px;">
             Seu carrinho ainda está vazio.
         </div>
 
         <div class="text-center">
-            <a href="{% url 'home' %}#menu" class="btn-red">
+            <a href="{% url 'home' %}#mgrid" class="btn-red d-inline-block text-decoration-none">
                 Ver produtos
             </a>
         </div>

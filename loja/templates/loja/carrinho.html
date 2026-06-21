@@ -35,8 +35,7 @@ Carrinho
                         <th>Produto</th>
                         <th>Categoria</th>
                         <th>Preço</th>
-                        <th>Quantidade</th>
-                        <th>Subtotal</th>
+                        <th>Quantidade</th> <th>Subtotal</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
@@ -58,7 +57,17 @@ Carrinho
                         </td>
                         <td>{{ item.categoria }}</td>
                         <td>R$ {{ item.preco }}</td>
-                        <td>{{ item.quantidade }}</td>
+                        
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <a href="{% url 'diminuir_quantidade' item.id %}" class="btn btn-sm btn-outline-secondary px-2 py-1">-</a>
+                                
+                                <span class="mx-3 fw-bold" style="min-width: 20px;">{{ item.quantidade }}</span>
+                                
+                                <a href="{% url 'aumentar_quantidade' item.id %}" class="btn btn-sm btn-outline-secondary px-2 py-1">+</a>
+                            </div>
+                        </td>
+
                         <td class="fw-bold text-success">R$ {{ item.subtotal }}</td>
                         <td>
                             <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-danger btn-sm rounded-3">

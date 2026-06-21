@@ -4,26 +4,40 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from .models import ItemCarrinho, Produto
 
 
-
 def home(request):
-    # 1. Pega a palavra que o usuário digitou na lupa
-    busca = request.GET.get('q')
+    # Pega o termo digitado na barra de pesquisa
+    busca = request.GET.get('q', '').strip()
+    # Pega o filtro de categoria se o usuário clicar nos botões de filtro
+    categoria_filtro = request.GET.get('categoria', '').strip()
 
-    # 2. Se a pessoa digitou algo, acionamos o filtro no Banco de Dados
+    # Começamos trazendo todos os produtos
+    produtos = Produto.objects.all()
+
+    # Se ele buscou por texto
     if busca:
-        # O '__icontains' é mágico: ele ignora maiúsculas/minúsculas e acha partes da palavra.
-        # Ex: se digitar "mora", ele acha "Sorvete de Morango".
-        produtos = Produto.objects.filter(nome__icontains=busca)
-    else:
-        # Se a barra de pesquisa estiver vazia, carrega o cardápio inteiro
-        produtos = Produto.objects.all()
+        produtos = produtos.filter(nome__icontains=busca)
+    
+    # Se ele clicou em um botão de filtro de categoria
+    if categoria_filtro:
+        produtos = produtos.filter(categoria__iexact=categoria_filtro)
 
-    # 3. Envia os produtos (filtrados ou totais) para o template HTML desenhar
+    # Se houver uma busca por texto ou por categoria ativa, 
+    # redirecionamos para a nova página de listagem de ocorrências
+    if busca or categoria_filtro:
+        return render(request, 'loja/produto.html', {
+            'produtos': produtos,
+            'busca': busca,
+            'categoria_atual': categoria_filtro
+        })
+
+    # Caso contrário, mostra a index.html normal com o cardápio completo
     return render(request, 'loja/index.html', {'produtos': produtos})
 
+@login_required
 def base(request):
     return render(request, 'loja/base.html')
 
@@ -51,25 +65,33 @@ def cadastro(request):
             messages.success(request, f"Eba! Conta criada com sucesso. Bem-vindo(a), {user.username}!")
             return redirect('home')
         else:
-            # ATENÇÃO AQUI: Este 'else' precisa estar perfeitamente alinhado com o 'if form.is_valid():' acima dele!
             messages.error(request, "Não foi possível criar a conta. Por favor, corrija os erros destacados abaixo.")
             
     else:
-        # ATENÇÃO AQUI: Este 'else' precisa estar alinhado com o 'if request.method == 'POST':'
         form = UserCreationForm()
         
     return render(request, 'loja/cadastro.html', {'form': form})
+
+@login_required
 def sobre(request):
     return render(request, 'loja/sobre.html')
 
+@login_required
 def contatos(request):
     return render(request, 'loja/contatos.html')
+
 
 def pegar_session_key(request):
     if not request.session.session_key:
         request.session.create()
     return request.session.session_key
 
+@login_required
+def produto(request, produto_id):
+    produto = get_object_or_404(Produto, id=produto_id)
+    return render(request, 'loja/produto.html', {'produto': produto})
+
+@login_required
 def adicionar_carrinho(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -126,6 +148,7 @@ def adicionar_carrinho(request):
 
     return redirect("home")
 
+@login_required
 def carrinho(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -144,6 +167,7 @@ def carrinho(request):
         "total": total
     })
 
+@login_required
 def remover_item_carrinho(request, item_id):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -167,14 +191,14 @@ def remover_item_carrinho(request, item_id):
     return redirect("carrinho")
 
 def user_logout(request):
-    logout(request) # Encerra a sessão do usuário
-    return redirect('home') # Joga ele de volta para a tela inicial
+    logout(request) 
+    return redirect('home') 
 
+@login_required
 def finalizar_pedido(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
-    # Busca todos os itens do usuário atual e deleta do banco (esvazia o carrinho)
     itens = ItemCarrinho.objects.filter(usuario=request.user)
     
     if itens.exists():
@@ -182,3 +206,33 @@ def finalizar_pedido(request):
         messages.success(request, "Pedido finalizado com sucesso! Seu sorvete já está sendo preparado.")
     
     return redirect('carrinho')
+
+@login_required
+def aumentar_quantidade(request, item_id):
+    session_key = pegar_session_key(request)
+    
+    if request.user.is_authenticated:
+        item = get_object_or_404(ItemCarrinho, id=item_id, usuario=request.user)
+    else:
+        item = get_object_or_404(ItemCarrinho, id=item_id, session_key=session_key)
+        
+    item.quantidade += 1
+    item.save()
+    return redirect("carrinho")
+
+@login_required
+def diminuir_quantidade(request, item_id):
+    session_key = pegar_session_key(request)
+    
+    if request.user.is_authenticated:
+        item = get_object_or_404(ItemCarrinho, id=item_id, usuario=request.user)
+    else:
+        item = get_object_or_404(ItemCarrinho, id=item_id, session_key=session_key)
+        
+    if item.quantidade > 1:
+        item.quantidade -= 1
+        item.save()
+    else:
+        item.delete()
+        
+    return redirect("carrinho")

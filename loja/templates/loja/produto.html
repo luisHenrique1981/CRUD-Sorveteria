@@ -1,0 +1,99 @@
+{% extends "loja/base.html" %}
+{% load static %}
+
+{% block title %}Resultados da Busca | Sorvetto{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-4">
+    
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-dark">Resultados da <span>Pesquisa</span></h2>
+        {% if busca %}
+            <p class="text-muted">Mostrando ocorrências para: "<strong>{{ busca }}</strong>"</p>
+        {% endif %}
+        <div class="bg-danger mx-auto my-2" style="width: 60px; height: 3px; border-radius: 2px;"></div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+        <a href="{% url 'home' %}?q={{ busca }}" class="btn {% if not categoria_atual %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Todos os Sabores
+        </a>
+        <a href="{% url 'home' %}?q={{ busca }}&categoria=Sorvete" class="btn {% if categoria_atual == 'Sorvete' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Sorvetes
+        </a>
+        <a href="{% url 'home' %}?q={{ busca }}&categoria=Picole" class="btn {% if categoria_atual == 'Picole' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Picolés
+        </a>
+        <a href="{% url 'home' %}?q={{ busca }}&categoria=Sundae" class="btn {% if categoria_atual == 'Sundae' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Sundae
+        </a>
+        <a href="{% url 'home' %}?q={{ busca }}&categoria=Gourmet" class="btn {% if categoria_atual == 'Milkshake' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Milkshake
+        </a>
+        <a href="{% url 'home' %}?q={{ busca }}&categoria=Sobremesa" class="btn {% if categoria_atual == 'Sobremesa' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill px-4">
+            Sobremesas
+        </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for produto in produtos %}
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative backend-card-hover" style="transition: transform 0.2s;">
+                    
+                    <div class="text-center bg-light p-3" style="height: 240px; display: flex; align-items: center; justify-content: center;">
+                        {% if produto.imagem %}
+                            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="img-fluid" style="max-height: 100%; object-fit: contain;">
+                        {% else %}
+                            <span class="text-muted">Sem Imagem</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body d-flex flex-column p-4">
+                        <span class="text-danger fw-bold text-uppercase small mb-1">{{ produto.categoria }}</span>
+                        <h5 class="card-title fw-bold text-dark mb-2">{{ produto.nome }}</h5>
+                        <p class="card-text text-muted small flex-grow-1">
+                            {{ produto.descricao|default:"Delicioso sorvete preparado com os melhores ingredientes selecionados." }}
+                        </p>
+                        
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <div>
+                                <span class="text-muted small d-block">Preço</span>
+                                <span class="fs-4 fw-bold text-success">R$ {{ produto.preco }}</span>
+                            </div>
+                            
+                            <form action="{% url 'adicionar_carrinho' %}" method="POST" class="m-0">
+                                {% csrf_token %}
+                                <input type="hidden" name="nome" value="{{ produto.nome }}">
+                                <input type="hidden" name="categoria" value="{{ produto.categoria }}">
+                                <input type="hidden" name="preco" value="{{ produto.preco }}">
+                                <input type="hidden" name="imagem" value="{{ produto.imagem }}">
+                                <button type="submit" class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
+                                    <i class="fas fa-shopping-cart text-white"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center py-5">
+                <div class="alert alert-light border shadow-sm rounded-4 p-5">
+                    <i class="fas fa-ice-cream fa-3x text-muted mb-3"></i>
+                    <h4 class="fw-bold text-dark">Nenhum sorvete encontrado</h4>
+                    <p class="text-muted">Não encontramos correspondências para os filtros ou termos aplicados.</p>
+                    <a href="{% url 'home' %}" class="btn btn-danger rounded-pill px-4 mt-2">Limpar Filtros</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<style>
+    .backend-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+</style>
+{% endblock %}

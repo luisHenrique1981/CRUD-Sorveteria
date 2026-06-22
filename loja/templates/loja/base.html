@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sorveteria{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+    <!-- Bootstrap 5.3 -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <!-- AOS Animate on Scroll -->
+    <link href="{% static 'css/aos.css' %}" rel="stylesheet"/>
+    <!-- Swiper -->
+    <link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet"/>
+    <!-- all min css -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}"/>
+    <!-- magnific CSS -->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}"/>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" id="nav">
+         <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+               <div class="blogo">
+                  <div class="bico"><i class="fas fa-utensils"></i></div>
+                  <div>
+                     <div class="bname">Sor<span>vetto</span></div>
+                     <div class="bsub">Sorveteria & Gelados</div>
+                  </div>
+               </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <i class="fas fa-bars" style="color:var(--primary);font-size:1.35rem;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+               <ul class="navbar-nav mx-auto">
+                  {% if user.is_authenticated %}
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a></li>
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}" href="{% url 'sobre' %}">Sobre nós</a></li>
+                     <li class="nav-item"><a class="nav-link" href="">Menu</a></li>
+                     <li class="nav-item"><a class="nav-link" href="">Avaliações</a></li>
+                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contatos' %}active{% endif %}" href="{% url 'contatos' %}">Contatos</a></li>
+                  {% else %}
+                     
+                  {% endif %}
+               </ul>
+               </ul> 
+               <div class="d-flex align-items-center gap-1">
+                  {% if user.is_authenticated %}
+                     <form action="{% url 'home' %}" method="GET" class="d-flex align-items-center position-relative">
+                        <input 
+                           type="text" 
+                           name="q" 
+                           class="form-control" 
+                           placeholder="Pesquise um sorvete..." 
+                           value="{{ request.GET.q|default:'' }}"
+                        >
+                        <button type="submit" class="btn-search-icon" style="background: none; border: none; position: absolute; right: 10px;">
+                           <i class="fas fa-search"></i>
+                        </button>
+                     </form>
+                     <a href="{% url 'carrinho' %}" class="nav-link nav-cta">
+                        <i class="fas fa-shopping-cart me-1"></i>Carrinho
+                     </a>
+                     <span class="text-white fw-bold ms-2">Olá, {{ user.username }}!</span>
+                     <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-light ms-2">Sair</a>
+                  {% else %}
+                     <a href="{% url 'login' %}" class="nav-link text-white fw-bold">Login</a>
+                     <a href="{% url 'cadastro' %}" class="nav-link text-white fw-bold ms-2">Criar Conta</a>
+                  {% endif %}
+               </div>
+               </div>
+            </div>
+         </div>
+      </nav>
+      <main>
+         <div id="searchOv">
+            <button class="sovclose" id="searchClose"><i class="fas fa-times"></i></button>
+            <div class="sovbox">
+               <h4>O que procura hoje?</h4>
+               <form method="GET" action="{% url 'home' %}">
+                  <div class="sovinput">
+                     <input type="text" name="q" id="searchInput" placeholder="Pesquise por sorvetes, picolés..." autocomplete="off"/>
+                     <button type="submit"><i class="fas fa-search"></i></button>
+                  </div>
+                </form>
+               <!-- Categories inside search box -->
+               <div class="sovcats">
+                  <div class="sovcat active" data-cat="all">
+                     <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Todos Items
+                  </div>
+                  <div class="sovcat" data-cat="burgers">
+                     <img src="{% static 'img/menu/sorvete.jpg' %}" alt=""/>Sorvetes
+                  </div>
+                  <div class="sovcat" data-cat="pizza">
+                     <img src="{% static 'img/menu/picole.jpg' %}" alt=""/>Picolés
+                  </div>
+                  <div class="sovcat" data-cat="chicken">
+                     <img src="{% static 'img/menu/sundae.jpg' %}" alt=""/>Sundaes
+                  </div>
+                  <div class="sovcat" data-cat="wraps">
+                     <img src="{% static 'img/menu/milkshake.jpg' %}" alt=""/>Milkshakes
+                  </div>
+                  <div class="sovcat" data-cat="pasta">
+                     <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Sobremesas
+                  </div>
+                  <div class="sovcat" data-cat="desserts">
+                     <img src="{% static 'img/menu/sobremesa.jpg' %}" alt=""/>Extras
+                  </div>
+               </div>
+               <div class="sovtrend">
+                  <p><i class="fas fa-fire me-1" style="color:var(--secondary);"></i>Buscas Populares</p>
+                  <span class="ttag">Milkshake Moranog</span>
+                  <span class="ttag">Sundae Limão</span>
+                  <span class="ttag">Picole Chocolate</span>
+                  <span class="ttag">Sorvete Napolitano</span>
+                  <span class="ttag">Sorvete Morango</span>
+                  <span class="ttag">Banana Split</span>
+               </div>
+            </div>
+         </div>
+        {% block content %}
+        {% endblock %}
+      </main>
+      <footer>
+         <div class="container">
+            <div class="row g-5">
+               <div class="col-lg-4">
+                  <div class="fnm">Sor<span>vetto</span></div>
+                  <p class="fdesc">Reunimos os melhores sabores do mundo em uma experiência rápida, acolhedora e acessível. Cada refeição é preparada com carinho.</p>
+                  <div class="fsoc">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                     <a href="#"><i class="fab fa-youtube"></i></a>
+                     <a href="#"><i class="fab fa-tiktok"></i></a>
+                  </div>
+               </div>
+               <div class="col-sm-6 col-lg-2">
+                  <div class="ftit">Links rápidos</div>
+                  <ul class="flinks ps-0">
+                     <li><a href="#hero"><i class="fas fa-chevron-right"></i>Inicio</a></li>
+                     <li><a href="#about"><i class="fas fa-chevron-right"></i>Sobre nós</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Nosso Menu</a></li>
+                     <li><a href="#contact-section"><i class="fas fa-chevron-right"></i>Contatos</a></li>
+                  </ul>
+               </div>
+               <div class="col-sm-6 col-lg-2">
+                  <div class="ftit">Nosso Menu</div>
+                  <ul class="flinks ps-0">
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Picolés</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Milkshake</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sorvetes</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sundaes</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Sobremesas</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Extras</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-4">
+                  <div class="ftit">Entre em contato</div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-map-marker-alt"></i></div>
+                     <div class="fciinfo"><strong>Endereço</strong>42 Flavor Street, Manhattan, NY 10001</div>
+                  </div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-phone-alt"></i></div>
+                     <div class="fciinfo"><strong>Telefone</strong>+1 (800) 123-4567</div>
+                  </div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-envelope"></i></div>
+                     <div class="fciinfo"><strong>Email</strong>hello@sorvettofood.com</div>
+                  </div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-clock"></i></div>
+                     <div class="fciinfo"><strong>Horário</strong>Wed - Sun: 09 AM - 11 PM</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="fbot">
+            <div class="container">
+               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <p>&copy 2026 <span>Sorvetto Gelataria</span>. All Rights Reserved by <a target="_blank" class="mx-0 fw-bold text-success" href="https://bestwpware.com/">Bestwpware</a>. Made with <span><i class="fas fa-heart"></i></span>  <br>Distributed by <a target="_blank" class="mx-0 fw-bold text-success" href="https://themewagon.com">ThemeWagon</a></p>
+                  <div><a href="#">Política de Privacidade</a><a href="#">Termos</a><a href="#">Cookies</a></div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+    
+	<!-- jQuery -->
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+      <!-- Bootstrap 5 -->
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <!-- AOS -->
+      <script src="{% static 'js/aos.js' %}"></script>
+      <!-- Swiper -->
+      <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+      <!-- CounterUp -->
+      <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+      <!-- Main js -->
+      <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

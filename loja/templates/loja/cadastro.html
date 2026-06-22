@@ -1,0 +1,79 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center my-5 py-5">
+    
+    <div class="card shadow p-4" style="width: 400px; background-color: oklch(64.5% 0.246 16.439); border:none; color:white;">
+
+        <div class="text-center mb-4">
+            <h2>Cadastro</h2>
+            <p>Crie sua conta na Sorvetto</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="background-color: white; color: black; border-radius: 8px;">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <style>
+            .form-alinhado p {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                margin-bottom: 1.2rem;
+                font-weight: 500;
+            }
+            .form-alinhado input {
+                width: 100%;
+                padding: 0.5rem 0.75rem;
+                border-radius: 0.375rem;
+                border: none;
+                margin-top: 0.4rem;
+                color: #212529;
+            }
+            /* Destaca os erros do formulário (ex: "As senhas não coincidem") em amarelo */
+            .form-alinhado ul.errorlist {
+                background-color: #ffcc00;
+                color: #000;
+                padding: 10px;
+                border-radius: 5px;
+                list-style-type: none;
+                margin-top: 5px;
+                font-weight: bold;
+                font-size: 0.85rem;
+            }
+            /* Os textos de ajuda (ex: "A senha deve ter 8 caracteres") ficam mais discretos */
+            .form-alinhado span.helptext {
+                font-size: 0.8rem;
+                color: #f8f9fa;
+                opacity: 0.8;
+                margin-top: 5px;
+                display: block;
+            }
+        </style>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-alinhado">
+                {{ form.as_p }}
+            </div>
+
+            <div class="text-center mb-3 mt-4">
+                <a class="text-white text-decoration-none" href="{% url 'login' %}">
+                    Já tem conta? Faça Login
+                </a>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 fw-bold shadow-sm">
+                Cadastrar-se
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

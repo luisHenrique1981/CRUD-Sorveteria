@@ -1,0 +1,59 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center my-5 py-5">
+    
+    <div class="card shadow p-4" style="width: 400px; background-color: oklch(64.5% 0.246 16.439); border:none; color:white;">
+
+        <div class="text-center mb-4">
+            <h2>Login</h2>
+            <p>Acesse sua conta na Sorvetto</p>
+        </div>
+
+        <style>
+            /* Nosso CSS customizado para arrumar o formulário do Django */
+            .form-alinhado p {
+                display: flex;
+                flex-direction: column; /* Coloca a Label em cima do Input */
+                text-align: left; /* Alinha o texto à esquerda */
+                margin-bottom: 1.2rem;
+                font-weight: 500;
+            }
+            .form-alinhado input {
+                width: 100%; /* Caixinha ocupando toda a largura */
+                padding: 0.5rem 0.75rem;
+                border-radius: 0.375rem;
+                border: none;
+                margin-top: 0.4rem;
+                color: #212529; /* Cor do texto digitado escura */
+            }
+            .form-alinhado ul {
+                /* Esconde as bolinhas da lista de erro de senha, se houver */
+                list-style-type: none;
+                padding: 0;
+                color: #ffdddd;
+                font-size: 0.85rem;
+            }
+        </style>
+
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <div class="form-alinhado">
+                {{ form.as_p }}
+            </div>
+
+            <div class="text-center mb-3 mt-4">
+                <a class="text-white text-decoration-none" href="{% url 'cadastro' %}">
+                    Não tem conta? Cadastre-se aqui
+                </a>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 fw-bold shadow-sm">
+                Entrar
+            </button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
